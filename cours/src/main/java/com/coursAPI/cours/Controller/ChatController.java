@@ -9,9 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class ChatController {
     @Autowired
     private ChatService userService;
-    @GetMapping("/chat")
-    public ChatService getChatService() {
-        return userService;
-    }
+
 }
 

@@ -20,9 +20,10 @@ public class CourController {
     public Cour updateCour(@RequestBody Cour cour){
         return courService.update(cour);
     }
-    @DeleteMapping("/deleteCour")
-    public void deleteCour(@RequestBody String id ){
+    @DeleteMapping("/deleteCour/{id}")
+    public void deleteCour(@PathVariable String id ){
         this.courService.Delete(id);
     }
+
 
 }

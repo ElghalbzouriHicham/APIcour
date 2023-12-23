@@ -25,6 +25,8 @@ public class Cour {
     private String descriptionCour;
 
     private Evaluation evaluation;
+    private String idEtudiant;
+    private String idEnseignant;
 
 
 }

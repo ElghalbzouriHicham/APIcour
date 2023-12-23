@@ -7,6 +7,8 @@ import com.coursAPI.cours.Repository.EvaluationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -27,11 +29,34 @@ public class CourService {
             throw new IllegalArgumentException("cour or quiz cannot be null");
         }
     }
+
     public Cour update(Cour cour) {
-        return this.courRepository.save(cour);
+        if(cour!=null && cour.getEvaluation()!=null){
+            Evaluation evaluation = cour.getEvaluation();
+            Evaluation ajouterEvaluation = evaluationRepository.save(evaluation);
+            cour.setEvaluation(ajouterEvaluation);
+            return this.courRepository.save(cour);
+        }
+        else{
+            throw new IllegalArgumentException("address cannot be null");
+        }
     }
+
     public void Delete(String id  ){
-        this.courRepository.deleteById(id);
+        Optional<Cour> optionalCour=this.courRepository.findById(id);
+        if(optionalCour.isPresent()){
+            Cour cour=optionalCour.get();
+            Evaluation evaluation=cour.getEvaluation();
+            if (evaluation!=null){
+                evaluationRepository.deleteById(evaluation.getId());
+            }
+            this.courRepository.deleteById(id);
+        }
+        else{
+            throw new IllegalArgumentException(" not found with ID: " + id);
+        }
     }
+
+
 
 }
