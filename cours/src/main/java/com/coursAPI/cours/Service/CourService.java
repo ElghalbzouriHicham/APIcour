@@ -4,10 +4,10 @@ import com.coursAPI.cours.Model.Cour;
 import com.coursAPI.cours.Model.Evaluation;
 import com.coursAPI.cours.Repository.CourRepository;
 import com.coursAPI.cours.Repository.EvaluationRepository;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,7 +56,9 @@ public class CourService {
             throw new IllegalArgumentException(" not found with ID: " + id);
         }
     }
-
-
-
+    public String acheterCour(String COURSid, String Userid){
+        Optional<Cour> cour=courRepository.findById(COURSid);
+        cour.get().getListIdEtudiants().add(Userid);
+        return "viva";
+    }
 }

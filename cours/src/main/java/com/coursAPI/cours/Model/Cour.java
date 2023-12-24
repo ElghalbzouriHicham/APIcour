@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @EntityScan
@@ -25,7 +26,7 @@ public class Cour {
     private String descriptionCour;
 
     private Evaluation evaluation;
-    private String idEtudiant;
+    private List<String> ListIdEtudiants;
     private String idEnseignant;
 
 
